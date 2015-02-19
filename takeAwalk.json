@@ -1,0 +1,45 @@
+{
+	"takeAWalk": [
+		{
+			"org": "Non-Residents",
+			"title": "Outreach Trivia Nights",
+			"time":"12:25am",
+			"date":"Nov 23,2015",
+			"description": "Outreach Trivia Nights. Come out and compete. Test your knowledge",
+			"imageURL": "http://studentevents.ucsd.edu/article_images/15023416121092.png"			
+		},
+		{
+			"org": "Delta Cubed",
+			"title": "Walk it off",
+			"time": "1:46pm",
+			"date": "Dec 13, 2016",
+			"description": "Got injured playing sports? Be a man and walk it off",
+			"imageURL": ""			
+		},
+		{
+			"org": "The ZONE",
+			"title": "Therapy Fluffies",
+			"time": "1:00pm",
+			"date": "Jan 12,2015",
+			"description": "Woof! Come relax and de-stress with fun-loving, certified therapy dogs every week!",
+			"imageURL": "http://studentevents.ucsd.edu/article_images/1501517170061.jpg"				
+		},
+		{
+			"org": "Water polo",
+			"title": "The Big Game",
+			"time": "7:00 pm",
+			"date": "Jan 12,2015",
+			"description": "UCSD vs every other school. Come support the Winning Team",
+			"imageURL": "http://vaterpolovesti.com/wp-content/uploads/2014/04/286971-serbia-waterpolo-250x250.jpg"
+		},
+		{
+			"org": "Health Enthusiasts",
+			"title": "Food for Thought",
+			"time": "7:00 pm",
+			"date": "Jan 12,2015",
+			"description": "This is a free food event. Come out and learn about healthy living habits",
+			"imageURL": "http://www.interiordesign2014.com/wp-content/uploads/2013/05/sushi-cats-250x250.jpg"
+		}
+		
+	]
+}

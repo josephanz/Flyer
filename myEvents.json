@@ -1,0 +1,20 @@
+{
+	"myEvents": [
+		{
+			"org": "Water polo",
+			"title": "The Big Game",
+			"time": "7:00 pm",
+			"date": "Jan 12,2015",
+			"description": "UCSD vs every other school. Come support the Winning Team",
+			"imageURL": "http://vaterpolovesti.com/wp-content/uploads/2014/04/286971-serbia-waterpolo-250x250.jpg"
+		},
+		{
+			"org": "Health Enthusiasts",
+			"title": "Food for Thought",
+			"time": "7:00 pm",
+			"date": "Jan 12,2015",
+			"description": "This is a free food event. Come out and learn about healthy living habits",
+			"imageURL": "http://www.interiordesign2014.com/wp-content/uploads/2013/05/sushi-cats-250x250.jpg"
+		}
+	]
+}
