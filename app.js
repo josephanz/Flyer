@@ -197,7 +197,7 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/myLife',myLife.addFriend);
-app.get('/post', post.post);
+app.get('/post', post.myEvents);
 app.get('/takeAwalk', takeAwalk.takeAwalk);
 
 //for development only
