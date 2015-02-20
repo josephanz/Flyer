@@ -34,7 +34,7 @@ var post = require('./routes/post');
 var app = express();
 
 // all environments
-//app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 //app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
@@ -201,4 +201,8 @@ app.get('/post', post.post);
 app.get('/takeAwalk', takeAwalk.takeAwalk);
 
 //for development only
-app.listen(3000);
+//app.listen(3000);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
