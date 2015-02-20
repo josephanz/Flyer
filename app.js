@@ -120,4 +120,8 @@ app.get('/logout', function(req, res) {
 app.get('/myLife',myLife.addFriend);
 
 //for development only
-app.listen(3000);
+//app.listen(3000);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
