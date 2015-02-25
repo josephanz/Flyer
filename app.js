@@ -21,6 +21,7 @@ var passportLocal = require('passport-local');
 var bCrypt = require('bcrypt-nodejs');
 
 var User = require('./models/user');
+var Event = require('./models/event');
 
 var dbConfig = require('db.js');
 var mongoose = require('mongoose');
@@ -197,7 +198,10 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/myLife',myLife.addFriend);
-app.get('/post', post.post);
+app.get('/post', post.addEvent);
+
+//app.post('/post', project.addEvent);
+
 app.get('/takeAwalk', takeAwalk.takeAwalk);
 
 //for development only
