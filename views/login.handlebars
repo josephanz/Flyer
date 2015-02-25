@@ -6,22 +6,48 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/flyer.css">
+	<link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
+	<link rel="stylesheet" href="css/secureform.css" media="screen" type="text/css" />
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<title>Flyer</title>
 
 </head>
 <body>
-	<div class="container">
+	<!--<div class="container">
 		<center><h1>Flyer</h1><center>
 	</div>	
-	<form action="" method="post">
-		<center><input type="text" name="username" required='true' placeholder="Username"><center>
-		<br>
-		<center><input type="password" name="password" required='true' placeholder="Password"><center>
-		<br>
-		<center><input type="submit" value="Log In"><center>
-	</form>
+
+	 <form class ="form-horizontal" action="" method="post">
+  		<div class="form-group">
+  			<div class="col-xs-6 col-xs-offset-3">
+    			<center><input type="text" name="username" class="form-control" required='true' placeholder="Username"></center>
+    		</div>
+  		</div>
+  		<div class="form-group">
+  			<div class="col-xs-6 col-xs-offset-3">
+    			<center><input type="password" name="password" class="form-control" required='true' placeholder="Password"><center>
+    		</div>		
+	 	</div> 
+
+  		<center><button type="submit" class="btn btn-default">Login</button></center>
+  	</form>	
+	-->
+
+  	<div class="login-card">
+    	<center><h1 style="color:#0071A9">Flyer</h1></center>
+    	<center><img src="images/flyerlogo3.png"></center>
+	  	<form action="" method="post">
+	    	<input type="text" name="username" class="form-control" required='true' placeholder="Username">
+	    	<input type="password" name="password" class="form-control" required='true' placeholder="Password">    	
+	    	<input type="submit" name="login" class="login login-submit" value="login">
+	  	</form>
+
+	  	<div class="login-help">
+	    	<a href="/register">Register</a> 
+	  	</div>
+	</div>
+
 
 </body>
 </html>
