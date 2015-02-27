@@ -3,26 +3,18 @@
  * Module dependencies.
  */
 var express = require('express');
-
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
-
 var http = require('http');
 var path = require('path');
-
 var handlebars = require('express3-handlebars');
-
 var flash = require('connect-flash');
-
 var passport = require('passport');
 var passportLocal = require('passport-local');
-
 var bCrypt = require('bcrypt-nodejs');
-
 var User = require('./models/user');
 var Event = require('./models/event');
-
 var dbConfig = require('db.js');
 var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
@@ -31,34 +23,17 @@ var index = require('./routes/index');
 var myLife = require('./routes/myLife');
 var takeAwalk = require('./routes/takeAwalk');
 var post = require('./routes/post');
-
+var myPosts = require('./routes/myPosts');
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-//app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(_dirname, 'views'));
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 app.use(express.favicon());
-//app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
-//app.use(express.methodOverride());
-//app.use(express.cookieParser('Intro HCI secret key'));
-//app.use(express.session());
-//app.use(app.router);
-//app.use(express.static(path.join(__dirname, 'public')));
-
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(cookieParser());
-//app.use(expressSession({ 
-//	secret: 'laptopcat',
-//	resave: false,
-//	saveUninitialized: false
-//	}));
-
-//app.use(passport.initialize());
-//app.use(passport.session());
 
 app.use(flash());
 
@@ -72,12 +47,9 @@ app.configure(function() {
   app.use(app.router);
 });
 
+//login function
 passport.use( 'login', new passportLocal.Strategy( { passReqToCallback : true }, 
 	function(req, username, password, done) {
-	//done(null, user) -> user authenticated correctly
-	//done(null, null) -> user does not exist or did not authenticate correctly
-	//done(new Error('something went wrong!')) -> something went wrong on our end
-
 	//check if username exists in mongo
 	User.findOne({ 'username' : username },
 		function(err, user) {
@@ -100,6 +72,7 @@ passport.use( 'login', new passportLocal.Strategy( { passReqToCallback : true },
 		);
 }));
 
+//register function
 passport.use('register', new passportLocal.Strategy({ passReqToCallback : true }, 
 	function(req, username, password, done) {
 			User.findOne({ 'username' : username }, function(err, user) {
@@ -137,11 +110,13 @@ passport.use('register', new passportLocal.Strategy({ passReqToCallback : true }
 			});
 	}));
 
+//password check function
 var isValidPassword = function( username, password ) {
 	//NEED TO IMPLEMENT: actual password check
 	return true;
 };
 
+//gets user from database
 passport.serializeUser(function(user, done) {
 	done(null, user._id);
 });
@@ -173,15 +148,13 @@ app.get('/login', function(req, res) {
 	res.render('login');
 });
 
-//local authentication only verifies username and password once and then creates a UserID as a way to 
-//	authenticate from then on
 app.post('/login', passport.authenticate('login', {
-	//res.redirect('myLife');
 	successRedirect: '/myLife',
 	failureRedirect: '/login',
 	failureFlash : true
 }));
 
+//load registration page
 app.get('/register', function(req, res) {
 	res.render('register');
 });
@@ -192,20 +165,41 @@ app.post('/register', passport.authenticate('register', {
 	failureFlash: true
 }));
 
+//load logout page
 app.get('/logout', function(req, res) {
 	req.logout();
 	res.redirect('/');
 });
 
-app.get('/myLife',myLife.addFriend);
-app.get('/post', post.addEvent);
+//load all user's posted events
+app.get('/myPosts', myPosts.view);
 
-//app.post('/post', project.addEvent);
+//load posting form page
+app.get('/post', function(req, res) {
+	res.render('post');
+});
 
+//load page after creating new event
+app.get('/post/new', post.addEvent);
+
+
+
+
+
+
+
+
+
+
+//THIS IS ALL STUFF THAT I DON'T KNOW WHAT IT DOES, 
+//PROBABLY A BAD IDEA TO COMMENT IT OUT BUT WHATEVER
+//app.post('/myPosts', post.addEvent);
+//app.get('/myLife', myLife.addFriend);
+//app.get('/myPosts', post.addEvent);
+//app.get('/myPosts', function(req, res) {
+//	res.render('myPosts');
+//});
 app.get('/takeAwalk', takeAwalk.takeAwalk);
-
-//for development only
-//app.listen(3000);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

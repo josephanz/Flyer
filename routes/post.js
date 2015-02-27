@@ -1,30 +1,57 @@
-var data = require("../myEvents.json");
-//var models = require("../models/event.js");
+//var data = require("../myEvents.json");
+var models = require('../models.js');
 
-exports.addEvent = function(req, res) {    
-	// Your code goes here
-	console.log(data);
-	console.log("Hello");
+//get post page!
+exports.view = function(req, res) {
+	models.event
+		.find()
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		res.render('myPosts', {'events': events});
+	}
+}
+
+exports.addEvent = function(req, res) {
 	var name = req.query.name;
 	var title = req.query.title;
 	var date = req.query.date;
 	var starttime = req.query.starttime;
 	var endtime = req.query.endtime;
 	var description = req.query.description;
-	var image = req.query.image;
+	//var image = req.query.image;
+	
+	var newEvent = new models.event({
+		"hostname": name, 
+		"title": title,
+		"date": date,
+		"starttime": starttime,
+		"endtime": endtime,
+		//"categories": ,
+		"description": description,
+		//"image": Stringform_data.
+	});
 
-	var newEvent = {
-  		"Host": name,
-     	"title":title,
-      	"date": date,
-      	"starttime": starttime,
-      	"endtime": endtime,
-      	"description":description,
-      	"image": image
-      };
-      console.log(newEvent);
-    data["myEvents"].push(newEvent);
-	res.render('post',data);
-   
- }
+	//view the newly created event form
+	newEvent.save(afterSaving);
+	function afterSaving(err, events){
+		if(err) console.log(err);
+		res.send(500);
+		res.redirect('myPosts')
+	}
+}
 
+exports.deleteEvent = function(req, res) {
+	var eventID = req.params.id;
+
+	models.event
+		.find({"id": projectID})
+		.remove()
+		.exec(afterRemoving)
+
+	function afterRemoving(err, projects) {
+		if(err) console.log(err);
+		res.send();
+	}
+}
