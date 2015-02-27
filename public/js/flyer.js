@@ -46,6 +46,9 @@ function initializePage() {
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
 	initializePage();
+
+
+	$('#searchForm').submit(function(){});
 })
 
 /*
