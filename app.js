@@ -184,13 +184,6 @@ app.get('/post/new', post.addEvent);
 
 
 
-
-
-
-
-
-
-
 //THIS IS ALL STUFF THAT I DON'T KNOW WHAT IT DOES, 
 //PROBABLY A BAD IDEA TO COMMENT IT OUT BUT WHATEVER
 //app.post('/myPosts', post.addEvent);
@@ -200,6 +193,8 @@ app.get('/myLife', myLife.addFriend);
 //	res.render('myPosts');
 //});
 app.get('/takeAwalk', takeAwalk.takeAwalk);
+
+app.post('/takeAwalk', takeAwalk.filterEvent);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
