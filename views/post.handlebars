@@ -6,98 +6,49 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/bootstrap-select.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/flyer.css">
+	<link rel="stylesheet" href="css/secureform.css" media="screen" type="text/css" />
 	<title>Flyer</title>
-	<style type="text/css">
-		@font-face {
-		    font-family: myFirstFont;
-		    src: url(sansation_light.woff);
-		}
-		body{
-			background-color: #0071A9;
-			padding-top: 75px;
-		}
-		.navbar{
-			background-color: #0071A9;
-		}
-		h1 {
-		    color:white;
-		    font-family: 'Bilbo Swash Caps', cursive;
-		    font-size:300%;
-		    position: center;
-		    display: inline;
-		    padding-left: 10px;
-		}
-		
-		.mainImage {
-			width: 10%;
-			height: 10%;
-			padding-bottom: 20px; 
-		}
-		.container{
-			color: #0071A9;
-		}
-		.navigation{
-			padding-bottom: 10px;
-		}
-		.modal-dialog {
-		  width: 100%;
-		  height: 100%;
-		  padding: 0;
-		}
-
-		.modal-content {
-		  height: 100%;
-		  border-radius: 0;
-		}
-
-	</style>
+	
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-fixed-top">
-		<div class="navigation">
-			<h1>Flyer</h1>
-			<img class="mainImage" src="images/Plane.png">
-			<button class="btn btn-default pull-right btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+	<div id="contentArea" class="container" style="padding-left:0px; padding-right:0px; padding-top:80px">
 
-			<div class="btn-group btn-group-justified" role="group" aria-label="...">
-		  		<div class="btn-group" role="group">
-		    		<a href="/myLife"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>My Life</button></a>
-		  		</div>
-			  	<div class="btn-group" role="group">
-			    	<a href="/takeAwalk"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>Take a Walk</button></a>
-			  	</div>
-			  	<div class="btn-group" role="group">
-			    	<a href="/myPosts"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>Post</button></a>
-			  	</div>
-			</div>
-		</div>
+		<nav class="navbar navbar-fixed-top">
+		    <div class="navigation">
+		      <center><h1>Flyer</h1>
+		     <!-- <img style="width:40px; height:60px"class="mainImage" src="images/flyerlogo3.png"></center>-->
+		     	
+		        <table style="width:99%">
+		        <tr>
+		          <td align="center"><a class="navLink" href="/myLife">My Life</a></td>
+		          <td  align="center"><a class="navLink" href="/takeAwalk">Take A Walk</a></td>    
+		          <td class="on" align="center"><a class="on navLink" href="/myPosts">Create an Event</a></td>
+		        </tr>
+		      </table>
+		    </div>
 		</nav>
 
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel">Additional Features</h4>
-		      </div>
-		      <form>
-		      	 <br>
-		      	 <div class="form-group">
-				    <label for="search">Search by Name:</label>
-				    <input type="text" class="form-control" id="name" placeholder="Event Name">
-				  </div>
-				  <div class="form-group">
-				    <label for="date">Search by Date:</label>
-				    <input type="date" class="form-control" id="date" placeholder="MMM/DD/YYYY">
-				  </div>
-				  <div class="form-group">
-				    <label for="time">Search by starting Time:</label>
-				    <input type="time" class="form-control" id="time" placeholder="HH:MM">
-				  </div>
-				  <div class="form-group">
-				  	<label for="time">Search by Category</label>
+
+		</br>
+		<div class="login-card" style="padding:20px">
+			<form action="/post/new" method="get" role="form" id="addEvent">
+			<h3>Fill out all Fields for your Event:</h3>
+    		<label for="name">Name of Host:</label>
+	    	<input type="text" class="form-control" name="name" id="name" placeholder="Enter Name:">
+	    	<label for="title">Title of Event:</label>
+	    	<input type="text" name="title" class="form-control" id="title" placeholder="Type title:">
+	    	<label for="date">Date of Event:</label>
+	    	<input type="date" name="date" class="form-control" id="date" placeholder="MMM/DD/YYYY">
+	    	</br>
+	    	<label for="time">Starting Time:</label>
+	    	<input type="time" name ="starttime" class="form-control" id="starttime" placeholder="HH:MM">
+	    	</br>
+	    	<label for="time">Ending Time:</label>
+	    	<input type="time" name="endtime" class="form-control" id="endtime" placeholder="HH:MM">
+	    	<br>
+	    	 <div class="form-group">
+				  	<label for="time">Select Category(ies)</label>
 		      		<select class="selectpicker" style="width:100%" multiple>
 					    <optgroup label="Food">
 					      <option>Free</option>
@@ -114,20 +65,18 @@
 					    </optgroup>
 					  </select>
 		      	</div>
-
-		      
-			  </form>
-		      
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary">Search</button>
-		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-		       
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		</br>
-		<div class="row">
+		    <label for="description">Description of Event:</label>  	
+		    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+		    </br>
+		    <div class="form-group">
+    				<label for="exampleInputFile">File input</label>
+    				<input type="file" id="exampleInputFile">
+    				<p class="help-block">Image will be 250X250px</p>
+ 				</div>
+	    	<input type="submit" id="newEventSubmitButton" class="login login-submit" value="Create the Event">
+	  	</form>
+	</div>
+		<!--<div class="row">
 		  <div class="col-sm-6 col-md-4">
 		    <div class="thumbnail">
 		     	<form action="/post/new" method="get" role="form" id="addEvent">
@@ -188,7 +137,7 @@
 				</form>
 		    </div>
 		  </div>
-		</div>
+		</div> -->
 	</div>	
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>

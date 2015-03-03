@@ -10,6 +10,8 @@ exports.view = function(req, res) {
 		.exec(renderEvents);
 
 	function renderEvents(err, events) {
+		console.log(events);
+	
 		res.render('myPosts', {'events': events});
 	}
 }
