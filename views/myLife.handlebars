@@ -17,8 +17,8 @@
   <title>Flyer</title>
 
 </head>
-<body id="contentArea">
-  <div class="container">
+<body>
+  <div id="contentArea" class="container">
     <nav class="navbar navbar-fixed-top">
     <div class="navigation">
       <center><h1>Flyer</h1>
@@ -28,8 +28,8 @@
         <table style="width:99%">
         <tr>
           <td class="on" align="center"><a class="on navLink" href="/myLife">My Life</a></td>
-          <td align="center"><a class="navLink" href="/takeAwalk">Take A Walk</a></td>    
-          <td align="center"><a class="navLink" href="/myPosts">Create an Event</a></td>
+          <td align="center"><a class="navLink clickedTake" href="/takeAwalk">Take A Walk</a></td>    
+          <td align="center"><a class="navLink" href="/myPosts">Post</a></td>
         </tr>
       </table>
     </div>
@@ -87,7 +87,7 @@
     {{#each events}}    
     <div class="event" id="event{{id}}">
       <div class="col-sm-6 col-md-4">
-        <div  class="thumbnail">
+        <div class="thumbnail">
           <h3 syle="color:#333333;">{{org}}</h3>    
           <img class="imageEvent" src="{{imageURL}}">
           <div class="caption">

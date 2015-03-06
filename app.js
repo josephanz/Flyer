@@ -23,6 +23,7 @@ mongoose.connect(dbConfig.url);
 var index = require('./routes/index');
 var myLife = require('./routes/myLife');
 var takeAwalk = require('./routes/takeAwalk');
+var takeAwalk2 = require('./routes/takeAwalk2');
 var post = require('./routes/post');
 var myPosts = require('./routes/myPosts');
 var app = express();
@@ -331,6 +332,17 @@ app.post('/takeAwalk/:eventID', function(req, res) {
 		res.render('takeAwalk', {'events': events});
 	}
 });
+
+//THIS IS ALL STUFF THAT I DON'T KNOW WHAT IT DOES, 
+//PROBABLY A BAD IDEA TO COMMENT IT OUT BUT WHATEVER
+//app.post('/myPosts', post.addEvent);
+app.get('/myLife', myLife.addFriend);
+//app.get('/myPosts', post.addEvent);
+//app.get('/myPosts', function(req, res) {
+//	res.render('myPosts');
+//});
+app.get('/takeAwalk', takeAwalk.takeAwalk);
+app.get('/takeAwalk2', takeAwalk2.takeAwalk2);
 
 //app.post('/takeAwalk', takeAwalk.filterEvent);
 

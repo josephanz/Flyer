@@ -28,6 +28,7 @@ function initializePage() {
 	});
 
 	$('#addToMyLife').click(function(e) {
+	//$('.post a').click(function(e) {
 		console.log('DOING SOMETHING');
 		// Prevent following the link
 		e.preventDefault();
@@ -74,4 +75,35 @@ function initializePage() {
 			window.location.href = '/myPosts'; // reload the page
 		});
 	});
+
+	
+	$('.clickedTake').click(function(){
+		
+		var random_num = Math.random();
+		
+		console.log(random_num);
+		if(random_num > 0.5){
+			console.log("display > .5");
+			window.location.href = "/takeAwalk";
+		}else{
+			console.log("take a walk 2 should be rendered");
+			window.location.href = "/takeAwalk2";	
+			
+		}
+	});
+
+	$(".version_a").click(function(){
+		//add your Woopra tracking code for version A's like button click event
+		event.preventDefault();
+		woopra.track("a_version_add_click");
+	});
+	
+	$(".version_b").click(function(){
+		//add your Woopra tracking code for version A's like button click event
+		//alert("clicked");
+		event.preventDefault();
+		woopra.track("b_version_add_click");
+	});
+
+
 }
