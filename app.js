@@ -14,7 +14,8 @@ var passport = require('passport');
 var passportLocal = require('passport-local');
 var bCrypt = require('bcrypt-nodejs');
 var User = require('./models/user');
-var Event = require('./models/event');
+//var Event = require('./models/event');
+var models = require('./models.js');
 var dbConfig = require('db.js');
 var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
@@ -41,13 +42,13 @@ app.configure(function() {
   app.use(express.static('public'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
-  app.use(express.session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+  app.use(express.session({ cookieName: 'session', secret: 'keyboard cat', resave: false, saveUninitialized: false }));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
 });
 
-//login function
+//authentication function
 passport.use( 'login', new passportLocal.Strategy( { passReqToCallback : true }, 
 	function(req, username, password, done) {
 	//check if username exists in mongo
@@ -62,17 +63,18 @@ passport.use( 'login', new passportLocal.Strategy( { passReqToCallback : true },
 				return done(null, false, req.flash('message', 'User Not found.'));
 			}
 			//username exists, bad password
-			if(!isValidPassword(username, password)) {
+			if(user.password != password) {
 				console.log('Invalid password!');
 				return done(null, false, { message: 'Invalid password!' });
 			}
 			//successful authentication
+			//req.session.user = user;
 			return done(null, user);
 		}
-		);
+	);
 }));
 
-//register function
+//registration function
 passport.use('register', new passportLocal.Strategy({ passReqToCallback : true }, 
 	function(req, username, password, done) {
 			User.findOne({ 'username' : username }, function(err, user) {
@@ -108,23 +110,32 @@ passport.use('register', new passportLocal.Strategy({ passReqToCallback : true }
 					});
 				}
 			});
-	}));
+}));
 
-//password check function
-var isValidPassword = function( username, password ) {
-	//NEED TO IMPLEMENT: actual password check
-	return true;
-};
+/*app.use(function(req, res, next) {
+  if (req.session && req.session.user) {
+    User.findOne({ email: req.session.user.email }, function(err, user) {
+    	console.log('doin stuff');
+      if (user) {
+        req.user = user;
+        //delete req.user.password; // delete the password from the session
+        req.session.user = user;  //refresh the session value
+        res.locals.user = user;
+      }
+      // finishing processing the middleware and run the route
+      next();
+    });
+  } else {
+    next();
+  }
+});*/
 
-//gets user from database
 passport.serializeUser(function(user, done) {
 	done(null, user._id);
 });
 
-//NEED TO IMPLEMENT: query database against id stored in the session
+//query database for user by their id
 passport.deserializeUser(function(id, done) {
-	//query database or cache here instead of the garbage below
-	//done(null, { id: id, name: id });
 	User.findById(id, function(err, user) {
 		done(err, user);
 	});
@@ -148,9 +159,27 @@ app.get('/login', function(req, res) {
 	res.render('login');
 });
 
+//if password is wrong, notify user
+app.get('/loginPassword', function(req, res) {
+	res.render('loginPassword');
+});
+
+//user already exists in database, redirect to login
+app.get('/registerFailure', function(req, res) {
+	res.render('registerFailure');
+});
+
+//run authentication function
 app.post('/login', passport.authenticate('login', {
 	successRedirect: '/myLife',
-	failureRedirect: '/login',
+	failureRedirect: '/loginPassword',
+	failureFlash : true
+}));
+
+//if password is wrong, run authentication function again
+app.post('/loginPassword', passport.authenticate('login', {
+	successRedirect: '/myLife',
+	failureRedirect: '/loginPassword',
 	failureFlash : true
 }));
 
@@ -159,9 +188,17 @@ app.get('/register', function(req, res) {
 	res.render('register');
 });
 
+//run registration function
 app.post('/register', passport.authenticate('register', {
 	successRedirect: '/myLife',
-	failureRedirect: '/register',
+	failureRedirect: '/registerFailure',
+	failureFlash: true
+}));
+
+//user already exists, run authentication function
+app.post('/registerFailure', passport.authenticate('login', {
+	successRedirect: '/myLife',
+	failureRedirect: '/loginPassword',
 	failureFlash: true
 }));
 
@@ -172,7 +209,18 @@ app.get('/logout', function(req, res) {
 });
 
 //load all user's posted events
-app.get('/myPosts', myPosts.view);
+app.get('/myPosts', function(req, res) {
+	console.log('VIEWING POSTS');
+	models.event
+		.find({"hostname": req.user.username})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		//console.log(events);
+		res.render('myPosts', {'events': events});
+	}
+});
 
 //load posting form page
 app.get('/post', function(req, res) {
@@ -180,22 +228,113 @@ app.get('/post', function(req, res) {
 });
 
 //load page after creating new event
-app.get('/post/new', post.addEvent);
+//app.get('/post/new', post.addEvent);
+app.get('/post/new', function(req, res) {
+	var name = req.user.username;
+	var title = req.query.title;
+	var date = req.query.date;
+	var starttime = req.query.starttime;
+	var endtime = req.query.endtime;
+	var description = req.query.description;
+	//var image = req.query.image;
+	
+	var newEvent = new models.event({
+		"hostname": name, 
+		"title": title,
+		"date": date,
+		"starttime": starttime,
+		"endtime": endtime,
+		//"categories": ,
+		"description": description,
+		//"image": Stringform_data.
+	});
 
+	//view the newly created event form
+	newEvent.save(afterSaving);
+	function afterSaving(err, events){
+		if(err) console.log(err);
+		res.send(500);
+		res.redirect('myPosts')
+	}
+});
 
+//load page after removing an event from myPosts
+app.post('/myPosts/:eventID/delete', function(req, res) {
+	var eventID = req.params.eventID;
+	console.log(req.params.eventID);
+	console.log('REMOVING EVENT')
+	models.event
+		.find({"_id": eventID})
+		.remove()
+		.exec(afterRemoving)
 
-//THIS IS ALL STUFF THAT I DON'T KNOW WHAT IT DOES, 
-//PROBABLY A BAD IDEA TO COMMENT IT OUT BUT WHATEVER
-//app.post('/myPosts', post.addEvent);
-app.get('/myLife', myLife.addFriend);
-//app.get('/myPosts', post.addEvent);
-//app.get('/myPosts', function(req, res) {
-//	res.render('myPosts');
-//});
-app.get('/takeAwalk', takeAwalk.takeAwalk);
+	function afterRemoving(err, events) {
+		if(err) console.log(err);
+		res.send();
+	}
+});
 
-app.post('/takeAwalk', takeAwalk.filterEvent);
+app.get('/myLife', function(req, res) {
+	models.event
+		.find({"participants": req.user.username})
+		.sort('date')
+		.exec(renderEvents);
 
+	function renderEvents(err, events) {
+		//console.log(events);
+		res.render('myLife', {'events': events});
+	}
+});
+
+app.post('/myLife/:eventID/remove', function(req, res) {
+	var eventID = req.params.eventID;
+	models.event
+		.update(
+			{"_id" : eventID},
+			{ $pop: { "participants" : req.user.username}}
+		)
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		//console.log(events);
+		res.render('myLife', {'events': events});
+	}
+});
+
+//app.get('/takeAwalk', takeAwalk.takeAwalk);
+app.get('/takeAwalk', function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find()
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		//console.log(events);
+		res.render('takeAwalk', {'events': events});
+	}
+});
+
+app.post('/takeAwalk/:eventID', function(req, res) {
+	var eventID = req.params.eventID;
+	console.log(req.params.eventID);
+	models.event
+		//.find({"_id": eventID})
+		.update(
+			{"_id" : eventID},
+			{ $push: { "participants" : req.user.username}}
+		)
+		.exec(renderEvents)
+
+	function renderEvents(err, events) {
+		//console.log(events);
+		res.render('takeAwalk', {'events': events});
+	}
+});
+
+//app.post('/takeAwalk', takeAwalk.filterEvent);
+
+//allows us to view on localhost
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

@@ -84,8 +84,8 @@
       </div>
     </div>-->
 
-    {{#each myEvents}}    
-   
+    {{#each events}}    
+    <div class="event" id="event{{id}}">
       <div class="col-sm-6 col-md-4">
         <div  class="thumbnail">
           <h3 syle="color:#333333;">{{org}}</h3>    
@@ -94,11 +94,11 @@
             <center><h4>{{title}}</h4></center>
             <center><p>{{date}}  {{time}}</p></center>
             <p>{{description}}</p>
-            <input type="submit" id="removeEvent" class="removeEvent remove-submit" value="Remove">
+            <input type="submit" class="removeFromMyLife removeFromMyLife-submit" id="removeFromMyLife" value="Remove">
           </div>
         </div>
       </div>
-    
+    </div>
     {{/each}}
   </div>  
   

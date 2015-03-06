@@ -101,8 +101,8 @@
 		    </div>
 		  </div>
 		</div>
-		{{#each takeAwalk}}		
-		
+		{{#each events}}
+		<div class="event" id="event{{id}}">		
 		  <div class="col-sm-6 col-md-4">
 		    <div class="thumbnail">
 		      <h3>{{org}}</h3>		
@@ -112,11 +112,12 @@
 		        <p>Date: {{date}}</p>
 		        <p>Time: {{time}}</p>
 		        <p>Description: {{description}}</p>
-		        <p><a href="#" class="addEvent btn btn-primary" id="addEvent" role="button">Add Event</a></p>
+		        <!--<p><a href="#" class="addEvent btn btn-primary" id="addToMyLife" role="button">Add Event</a></p>-->
+		        <input type="submit" class="addToMyLife addToMyLife-submit" id="addToMyLife" role="button" value="Add to My Life!">
 		      </div>
 		    </div>
-		  </div>
-		
+		  </div>	
+		</div>
 		{{/each}}
 	</div>	
 </body>
