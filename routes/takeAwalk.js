@@ -20,6 +20,7 @@ exports.filterEvent = function(req,res){
 	for(var i = 0; i < (data.takeAwalk.length);i++){
 		console.log(searchValue);
 		console.log(data.takeAwalk[i].description);
+		console.log(data.takeAwalk[i].time);
 
 		if(searchValue===data.takeAwalk[i].title || searchValue===data.takeAwalk[i].date ||
 			searchValue===data.takeAwalk[i].time || searchValue===data.takeAwalk[i].org){
@@ -29,13 +30,17 @@ exports.filterEvent = function(req,res){
 		}
 		else{
 			var lowerCaseTitle = (data.takeAwalk[i].title).toLowerCase();
+			var lowerCaseOrg = (data.takeAwalk[i].org).toLowerCase();
 			//This will search the the desciption and pick out words that match
 			var split = data.takeAwalk[i].description.split(" ");
 			var splitTitle = lowerCaseTitle.split(" ");
+			var splitOrg = lowerCaseOrg.split(" ");
+			
 			for(var j = 0; j < (split.length); j++){
 				//console.log(split[j]);
 				console.log(splitTitle[j]);
-				if(searchValue === split[j] || searchValue === splitTitle[j]){
+				if(searchValue === split[j] || searchValue === splitTitle[j] || 
+					searchValue === splitOrg[j]){
 					var item2 = data.takeAwalk[i];
 					JSONObj.takeAwalk.push(item2);
 				}
