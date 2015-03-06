@@ -1,11 +1,12 @@
 var data = require("../takeAwalk.json");
 
-exports.takeAwalk = function(req, res) {
+exports.takeAwalk2 = function(req, res) {
 	// Your code goes here
 	console.log(data);
 	console.log("Hello");
-	
-	res.render('takeAwalk',data);
+	var random_num = Math.random();
+	console.log(random_num);
+	res.render('takeAwalk2',data);
    
 }
 

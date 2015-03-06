@@ -22,6 +22,7 @@ mongoose.connect(dbConfig.url);
 var index = require('./routes/index');
 var myLife = require('./routes/myLife');
 var takeAwalk = require('./routes/takeAwalk');
+var takeAwalk2 = require('./routes/takeAwalk2');
 var post = require('./routes/post');
 var myPosts = require('./routes/myPosts');
 var app = express();
@@ -193,6 +194,7 @@ app.get('/myLife', myLife.addFriend);
 //	res.render('myPosts');
 //});
 app.get('/takeAwalk', takeAwalk.takeAwalk);
+app.get('/takeAwalk2', takeAwalk2.takeAwalk2);
 
 app.post('/takeAwalk', takeAwalk.filterEvent);
 
