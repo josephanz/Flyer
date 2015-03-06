@@ -1,5 +1,5 @@
 //var data = require("../myEvents.json");
-var models = require('../models.js');
+/*var models = require('../models.js');
 
 //get post page!
 exports.view = function(req, res) {
@@ -11,7 +11,7 @@ exports.view = function(req, res) {
 	function renderEvents(err, events) {
 		res.render('myPosts', {'events': events});
 	}
-}
+};
 
 exports.addEvent = function(req, res) {
 	var name = req.query.name;
@@ -40,18 +40,4 @@ exports.addEvent = function(req, res) {
 		res.send(500);
 		res.redirect('myPosts')
 	}
-}
-
-exports.deleteEvent = function(req, res) {
-	var eventID = req.params.id;
-
-	models.event
-		.find({"id": projectID})
-		.remove()
-		.exec(afterRemoving)
-
-	function afterRemoving(err, projects) {
-		if(err) console.log(err);
-		res.send();
-	}
-}
+};*/

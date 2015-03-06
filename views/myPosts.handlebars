@@ -34,11 +34,8 @@
 		    </div>
 		</nav>
 
-		
-		<center><a href="/post"><font color="FFFFF">Create an Event!</font></a><center>
-		<center><a href="/logout"><font color="FFFFF">Log Out</font></a><center>
-		{{#each events}}		
-		
+		{{#each events}}	
+		<div class ="event" id="event{{id}}">
 		  <div class="col-sm-6 col-md-4">
 		    <div class="thumbnail">
 		      <h3>{{org}}</h3>		
@@ -48,14 +45,17 @@
 		        <p>Date: {{date}}</p>
 		        <p>Time: {{time}}</p>
 		        <p>Description: {{description}}</p>
-		        <p><a href="#" id="removeEvent" class="removeEvent btn btn-danger" role="button">Remove Event</a></p>
+		        <input type="submit" class="delete delete-submit" id="cancelEvent" role="button" value="Cancel Event">
+		        <!--<form action="/myPosts/delete" method="get" role="form" id="event{{id}}">
+		        	<input type="submit" id="eventID" class="delete delete-submit" value="Cancel Event">
+		        </form>-->
 		      </div>
 		    </div>
 		  </div>
-		
+		</div>
 		{{/each}}
 	</div>
-
-
+	<center><a href="/post"><font color="FFFFF">Create an Event!</font></a><center>
+	<center><a href="/logout"><font color="FFFFF">Log Out</font></a><center>
 </body>
 </html>
