@@ -27,23 +27,26 @@ function initializePage() {
 		});
 	});
 
-	$('#addToMyLife').click(function(e) {
+	$('.addToMyLife').click(function(e) {
 	//$('.post a').click(function(e) {
-		console.log('DOING SOMETHING');
-		// Prevent following the link
 		e.preventDefault();
-
+		console.log('DOING SOMETHING');
+		
 		// Get the div ID, e.g., "project3"
 		var idNumber = $(this).closest('.event').attr('id');
 		console.log(idNumber);
-
+		
 		// get rid of 'project' from the front of the id 'project3'
 		var eventID = idNumber.substr('event'.length);
 		console.log(idNumber);
 
-		$.post('/takeAwalk/'+ eventID, function() {
-			window.location.href='/takeAwalk';
-		});
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+			$.post('/takeAwalk/'+ eventID, function() {
+				window.location.href='/takeAwalk';
+			});
+		//});
 	});
 
 	$('#removeFromMyLife').click(function(e) {

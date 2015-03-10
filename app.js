@@ -231,23 +231,29 @@ app.get('/post', function(req, res) {
 //load page after creating new event
 //app.get('/post/new', post.addEvent);
 app.get('/post/new', function(req, res) {
-	var name = req.user.username;
+	var name = req.query.name;
 	var title = req.query.title;
 	var date = req.query.date;
 	var starttime = req.query.starttime;
 	var endtime = req.query.endtime;
 	var description = req.query.description;
+	var location = req.query.location;
+	var selectors = req.query.selectors;
 	//var image = req.query.image;
 	
+	
+ 
+
 	var newEvent = new models.event({
 		"hostname": name, 
 		"title": title,
 		"date": date,
 		"starttime": starttime,
 		"endtime": endtime,
-		//"categories": ,
+		"tags": selectors,
+		"location": location,
 		"description": description,
-		//"image": Stringform_data.
+		//"imageURL": image
 	});
 
 	//view the newly created event form

@@ -6,6 +6,7 @@ module.exports = mongoose.model('Event', {
 	date: Date,
 	starttime: Number,
 	endtime: Number,
+	location: String,
 	categories: String,
 	description: String,
 	image: String

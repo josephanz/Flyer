@@ -57,22 +57,32 @@
 	    	<br>
 	    	 <div class="form-group">
 				  	<label for="time">Select Category(ies)</label>
-		      		<select class="selectpicker" style="width:100%" multiple>
-					    <optgroup label="Food">
+		      		<select name="selectors" class="selectpicker" style="width:100%" multiple>
+					    <optgroup label="Free">
+					      <option>Food</option>
 					      <option>Free</option>
 					    </optgroup>
 					    <optgroup label="Charity">
-					    	<option>Walk</option>
-					    	<option>Give</option>
+					    	<option>Raise Money</option>
 					    	<option>Donate</option>
+					    	<option>Charity</option>
 					    </optgroup>	
-					    <optgroup label="Party">
+					    <optgroup label="Location">
 					      <option>Off-Campus</option>
-					      <option>PC</option>
+					      <option>Price Center</option>
 					      <option>RIMAC</option>
+					      <option>One of the 6 Colleges</option>
+					    </optgroup>
+					     <optgroup label="Type">
+					      <option>Sport</option>
+					      <option>Dance</option>
+					      <option>Preformance</option>
+					      <option>Party</option>
 					    </optgroup>
 					  </select>
 		      	</div>
+		    <label for="location">Location</label>
+	    	<input type="text" name="location" class="form-control" id="location" placeholder="123 Library Walk, UCSD">  	
 		    <label for="description">Description of Event:</label>  	
 		    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
 		    </br>

@@ -7,6 +7,8 @@
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/bootstrap-select.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/flyer.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/secureform.css" media="screen" type="text/css" />
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-select.js"></script>
@@ -41,19 +43,26 @@
 		      </table>
 		    </div>
 		</nav>
+		<div class="login-card" style="padding:5px; margin:0px auto 10px">
+		      		<form action ="/post" method ="">
+      					<input type="submit" name="login"  class="login login-submit" value="Create the Event">
+     			 	</form>	
+   		</div>
 
 		{{#each events}}	
 		<div class ="event" id="event{{id}}">
 		  <div class="col-sm-6 col-md-4">
 		    <div class="thumbnail">
-		      <h3>{{org}}</h3>		
+		      <h3>{{hostname}}</h3>		
 		      <img class="imageEvent" src="{{imageURL}}">
 		      <div class="caption">
-		        <h4>{{title}}</h4>
-		        <p>Date: {{date}}</p>
-		        <p>Time: {{time}}</p>
-		        <p>Description: {{description}}</p>
-		        <input type="submit" class="delete delete-submit" id="cancelEvent" role="button" value="Cancel Event">
+		        <center><h4>{{title}}</h4></center>
+		        <p><i class="fa fa-calendar"></i> {{date}}</p>
+		        <p><i class="fa fa-clock-o"></i> {{starttime}} - {{endtime}}</p>
+		        <p><i class="fa fa-tags"></i>{{tags}}</p>
+		        <p><i class="fa fa-location-arrow"></i> {{location}}</p>
+		        <p><i class="fa fa-info-circle"></i> {{description}}</p>
+		        <input type="submit" class="delete delete-submit remove-submit" id="cancelEvent" role="button" value="Cancel Event">
 		        <!--<form action="/myPosts/delete" method="get" role="form" id="event{{id}}">
 		        	<input type="submit" id="eventID" class="delete delete-submit" value="Cancel Event">
 		        </form>-->

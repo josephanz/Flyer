@@ -9,6 +9,7 @@
   <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
   <link rel="stylesheet" href="css/secureform.css" media="screen" type="text/css" />
   <link rel="stylesheet" type="text/css" href="css/flyer.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/bootstrap-select.js"></script>
@@ -96,13 +97,16 @@
     <div class="event" id="event{{id}}">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <h3 syle="color:#333333;">{{org}}</h3>    
+          <h3 syle="color:#333333;">{{hostname}}</h3>    
           <img class="imageEvent" src="{{imageURL}}">
           <div class="caption">
             <center><h4>{{title}}</h4></center>
-            <center><p>{{date}}  {{time}}</p></center>
-            <p>{{description}}</p>
-            <input type="submit" class="removeFromMyLife removeFromMyLife-submit" id="removeFromMyLife" value="Remove">
+            <p><i class="fa fa-calendar"></i> {{date}}</p>
+            <p><i class="fa fa-clock-o"></i> {{starttime}} - {{endtime}}</p>
+            <p><i class="fa fa-tags"></i> {{tags}}</p>
+            <p><i class="fa fa-location-arrow"></i> {{location}}</p>
+            <p><i class="fa fa-info-circle"></i> {{description}}</p>
+            <input type="submit" class="removeFromMyLife removeFromMyLife-submit remove-submit" id="removeFromMyLife" value="Remove Event">
           </div>
         </div>
       </div>

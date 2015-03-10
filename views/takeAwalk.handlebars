@@ -8,6 +8,7 @@
 	<link href="css/bootstrap-select.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/flyer.css">
 	<link rel="stylesheet" href="css/secureform.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-select.js"></script>
@@ -54,15 +55,17 @@
 		<div class="event" id="event{{id}}">			
 		  <div class="col-sm-6 col-md-4">
 		    <div class="thumbnail">
-		      <h3>{{org}}</h3>		
+		      <h3>{{hostname}}</h3>		
 		      <img class="imageEvent" src="{{imageURL}}">
 		      <div class="caption">
-		        <h4>{{title}}</h4>
-		        <p>Date: {{date}}</p>
-		        <p>Time: {{time}}</p>
-		        <p>Description: {{description}}</p>
+		        <center><h4>{{title}}</h4></center>
+		        <p><i class="fa fa-calendar"></i> {{date}}</p>
+		        <p><i class="fa fa-clock-o"></i> {{starttime}} - {{endtime}}</p>
+		        <p><i class="fa fa-tags"></i> {{tags}}</p>
+		        <p><i class="fa fa-location-arrow"></i> {{location}}</p>
+		        <p><i class="fa fa-info-circle"></i> {{description}}</p>
 		        <!--<p><a href="#" class="addEvent btn btn-primary" id="addToMyLife" role="button">Add Event</a></p>-->
-		        <input type="submit" class="addToMyLife addToMyLife-submit" id="addToMyLife" role="button" value="Add to My Life!">
+		        <input type="submit" class="addToMyLife addToMyLife-submit login login-submit" id="addToMyLife" role="button" value="Add to My Life!">
 		      </div>
 		    </div>
 		  </div>	

@@ -6,11 +6,13 @@ var eventSchema = new mongoose.Schema({
 	"hostname": String, 
 	"title": String,
 	"date": Date,
-	"starttime": Number,
-	"endtime": Number,
+	"starttime": String,
+	"endtime": String,
 	"categories": String,
+	"location": String,
 	"description": String,
-	"image": String,
+	//"imageURL": String,
+	"tags": String,
 	"participants": Array
 });
 
