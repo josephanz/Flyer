@@ -36,17 +36,18 @@
 
 		        <table style="width:99%">
 		        <tr>
-		          <td align="center"><a class="navLink" href="/myLife">My Life</a></td>
-		          <td align="center"><a class="navLink clickedTake" href="/takeAwalk">Take A Walk</a></td>    
-		          <td class="on" align="center"><a class="on navLink" href="/myPosts">Post</a></td>
+		          <td align="center"><a class="navLink" href="/myLife"><i class="fa fa-cloud"></i> My Life</a></td>
+		          <td align="center"><a class="navLink clickedTake" href="/takeAwalk"><i class="fa fa-cloud"></i> Take A Walk</a></td>    
+		          <td class="on" align="center"><a class="on navLink" href="/myPosts"><i class="fa fa-paper-plane"></i> Post</a></td>
 		        </tr>
 		      </table>
 		    </div>
+
 		</nav>
 		<div class="login-card" style="padding:5px; margin:0px auto 10px">
-		      		<form action ="/post" method ="">
-      					<input type="submit" name="login"  class="login login-submit" value="Create the Event">
-     			 	</form>	
+  			<form action ="/post" method ="">
+				<input type="submit" class="login login-submit" value="Create a Flyer">
+		 	</form>	
    		</div>
 
 		{{#each events}}	
@@ -59,10 +60,10 @@
 		        <center><h4>{{title}}</h4></center>
 		        <p><i class="fa fa-calendar"></i> {{date}}</p>
 		        <p><i class="fa fa-clock-o"></i> {{starttime}} - {{endtime}}</p>
-		        <p><i class="fa fa-tags"></i>{{tags}}</p>
+		        <p><i class="fa fa-tags"></i> {{tags}}</p>
 		        <p><i class="fa fa-location-arrow"></i> {{location}}</p>
 		        <p><i class="fa fa-info-circle"></i> {{description}}</p>
-		        <input type="submit" class="delete delete-submit remove-submit" id="cancelEvent" role="button" value="Cancel Event">
+		        <input type="submit" class="cancelEvent delete delete-submit remove-submit" id="cancelEvent" role="button" value="Cancel Event">
 		        <!--<form action="/myPosts/delete" method="get" role="form" id="event{{id}}">
 		        	<input type="submit" id="eventID" class="delete delete-submit" value="Cancel Event">
 		        </form>-->

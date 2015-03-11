@@ -36,62 +36,15 @@
 
         <table style="width:99%">
         <tr>
-          <td class="on" align="center"><a class="on navLink" href="/myLife">My Life</a></td>
-          <td align="center"><a class="navLink clickedTake" href="/takeAwalk">Take A Walk</a></td>    
-          <td align="center"><a class="navLink" href="/myPosts">Post</a></td>
+          <td class="on" align="center"><a class="on navLink" href="/myLife"><i class="fa fa-paper-plane"></i> My Life</a></td>
+          <td align="center"><a class="navLink clickedTake" href="/takeAwalk"><i class="fa fa-cloud"></i> Take A Walk</a></td>    
+          <td align="center"><a class="navLink" href="/myPosts"><i class="fa fa-cloud"></i> Post</a></td>
         </tr>
       </table>
     </div>
     </nav>
   
-    
-    <!-- Modal -->
-    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Additional Features</h4>
-          </div>
-          <form>
-             <br>
-          <div class="form-group">
-            <label for="date">Search by Date:</label>
-            <input type="date" class="form-control" id="date" placeholder="MMM/DD/YYYY">
-          </div>
-          <div class="form-group">
-            <label for="time">Search by starting Time:</label>
-            <input type="time" class="form-control" id="time" placeholder="HH:MM">
-          </div>
-          <div class="modal-body">
-            <label for="time">Search by Category</label>
-              <select class="selectpicker"  multiple>
-              <optgroup label="Food">
-                <option>Free</option>
-              </optgroup>
-              <optgroup label="Charity">
-                <option>Walk</option>
-                <option>Give</option>
-                <option>Donate</option>
-              </optgroup> 
-              <optgroup label="Party">
-                <option>Off-Campus</option>
-                <option>PC</option>
-                <option>RIMAC</option>
-              </optgroup>
-            </select>
-            </div>
-
-          
-        </form>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Search</button>
-          </div>
-        </div>
-      </div>
-    </div>-->
+  
 
     {{#each events}}    
     <div class="event" id="event{{id}}">
@@ -114,7 +67,11 @@
     {{/each}}
   </div>  
   
-
+<!--<div class="login-card" style="padding:5px; margin:0px auto 10px">
+              <form action ="/logout" method ="">
+                <input type="submit" name="login"  class="login login-submit remove-submit" value="Unboard (Logout)">
+              </div>
+      </div>-->
   <center><a href="/logout"><font color="FFFFF">Log Out</font></a><center>
 </body>
 </html>

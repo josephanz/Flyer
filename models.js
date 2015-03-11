@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 //all events stored in take a walk
 var eventSchema = new mongoose.Schema({
 	//fields of the event defined below
+	"userWhoCreatedEvent": String,
 	"hostname": String, 
 	"title": String,
 	"date": Date,

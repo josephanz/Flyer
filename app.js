@@ -27,7 +27,7 @@ var takeAwalk2 = require('./routes/takeAwalk2');
 var post = require('./routes/post');
 var myPosts = require('./routes/myPosts');
 var app = express();
-
+var globalUsername;
 // all environments
 app.set('port', process.env.PORT || 3000);
 //app.set('views', path.join(_dirname, 'views'));
@@ -53,6 +53,7 @@ app.configure(function() {
 passport.use( 'login', new passportLocal.Strategy( { passReqToCallback : true }, 
 	function(req, username, password, done) {
 	//check if username exists in mongo
+	globalUsername = username;
 	User.findOne({ 'username' : username },
 		function(err, user) {
 			//some error happened with database
@@ -94,6 +95,7 @@ passport.use('register', new passportLocal.Strategy({ passReqToCallback : true }
 					console.log('Creating new user');
 					var newUser = new User();
 					newUser.username = username;
+					globalUsername =username;
 					newUser.password = password;
 					newUser.email = req.param('email');
 					newUser.firstName = req.param('firstName');
@@ -148,11 +150,12 @@ if ('development' == app.get('env')) {
 }
 
 //load welcome page
-app.get('/', function(req, res) {
-	res.render('index', {
+app.get('/',isLoggedIn ,function(req, res) {
+	/*res.render('/', {
 		isAuthenticated: req.isAuthenticated(),
 		user: req.user
-	});
+	});*/
+	res.render('login');
 });
 
 //load login page
@@ -210,10 +213,10 @@ app.get('/logout', function(req, res) {
 });
 
 //load all user's posted events
-app.get('/myPosts', function(req, res) {
+app.get('/myPosts', isLoggedIn, function(req, res) {
 	console.log('VIEWING POSTS');
 	models.event
-		.find({"hostname": req.user.username})
+		.find({"userWhoCreatedEvent": req.user.username})
 		.sort('date')
 		.exec(renderEvents);
 
@@ -224,13 +227,23 @@ app.get('/myPosts', function(req, res) {
 });
 
 //load posting form page
-app.get('/post', function(req, res) {
+app.get('/post', isLoggedIn, function(req, res) {
 	res.render('post');
 });
 
+function isLoggedIn(req, res, next) {
+    console.log(req.session)
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next()
+
+    // if they aren't redirect them to the home page
+    res.redirect("/login")
+}
+
 //load page after creating new event
 //app.get('/post/new', post.addEvent);
-app.get('/post/new', function(req, res) {
+app.get('/post/new', isLoggedIn, function(req, res) {
 	var name = req.query.name;
 	var title = req.query.title;
 	var date = req.query.date;
@@ -245,6 +258,7 @@ app.get('/post/new', function(req, res) {
  
 
 	var newEvent = new models.event({
+		"userWhoCreatedEvent": globalUsername,
 		"hostname": name, 
 		"title": title,
 		"date": date,
@@ -266,7 +280,7 @@ app.get('/post/new', function(req, res) {
 });
 
 //load page after removing an event from myPosts
-app.post('/myPosts/:eventID/delete', function(req, res) {
+app.post('/myPosts/:eventID/delete', isLoggedIn, function(req, res) {
 	var eventID = req.params.eventID;
 	console.log(req.params.eventID);
 	console.log('REMOVING EVENT')
@@ -281,7 +295,7 @@ app.post('/myPosts/:eventID/delete', function(req, res) {
 	}
 });
 
-app.get('/myLife', function(req, res) {
+app.get('/myLife', isLoggedIn,function(req, res) {
 	models.event
 		.find({"participants": req.user.username})
 		.sort('date')
@@ -293,7 +307,7 @@ app.get('/myLife', function(req, res) {
 	}
 });
 
-app.post('/myLife/:eventID/remove', function(req, res) {
+app.post('/myLife/:eventID/remove', isLoggedIn, function(req, res) {
 	var eventID = req.params.eventID;
 	models.event
 		.update(
@@ -309,7 +323,7 @@ app.post('/myLife/:eventID/remove', function(req, res) {
 });
 
 //app.get('/takeAwalk', takeAwalk.takeAwalk);
-app.get('/takeAwalk', function(req, res) {
+app.get('/takeAwalk',isLoggedIn,function(req, res) {
 	console.log("SHOULD SHOW ALL EVENTS");
 	models.event
 		.find()
@@ -322,7 +336,7 @@ app.get('/takeAwalk', function(req, res) {
 	}
 });
 
-app.post('/takeAwalk/:eventID', function(req, res) {
+app.post('/takeAwalk/:eventID', isLoggedIn, function(req, res) {
 	var eventID = req.params.eventID;
 	console.log(req.params.eventID);
 	models.event

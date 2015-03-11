@@ -11,7 +11,7 @@ $(document).ready(function() {
  */
 function initializePage() {
 
-	$('#cancelEvent').click(function(e) {
+	$('.cancelEvent').click(function(e) {
 		// Prevent following the link
 		e.preventDefault();
 
@@ -49,7 +49,7 @@ function initializePage() {
 		//});
 	});
 
-	$('#removeFromMyLife').click(function(e) {
+	$('.removeFromMyLife').click(function(e) {
 		// Prevent following the link
 		e.preventDefault();
 
