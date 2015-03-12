@@ -11,6 +11,7 @@ var path = require('path');
 var fs = require('fs');
 var imgur = require('imgur');
 var mmmagic = require('mmmagic'); 
+var qs = require('querystring');
 
 var handlebars = require('express3-handlebars');
 var flash = require('connect-flash');
@@ -542,12 +543,16 @@ app.get('/takeAwalkOther', isLoggedIn, function(req, res) {
 });*/
 
 app.get('/takeAwalkFilter', isLoggedIn, function(req, res) {
-	console.log(req.params);
+
+var str = req.url.split('?')[1];
+var strs = qs.parse(str);
+strss = strs["selectInput"];
+console.log(strss);
 	models.event
-		.find({"hostname": req.query.filterValue} || {"hostname" : req.query.filterValue}
-			|| {"date" : req.query.filterValue } || {"starttime" : req.query.filterValue}
-			|| {"endtime" : req.query.filterValue} || {"tags" : req.query.filterValue}
-			|| {"location" : req.query.filterValue} || {"description" : req.query.filterValue})
+		.find({"hostname": { $regex : ".*"+strss+".*"}} || {"hostname" : { $regex : ".*"+strss+".*"}}
+			|| {"date" : { $regex : ".*"+strss+".*"}} || {"starttime" : { $regex : ".*"+strss+".*"}}
+			|| {"endtime" : { $regex : ".*"+strss+".*"}} || {"tags" : { $regex : ".*"+strss+".*"}}
+			|| {"location" : { $regex : ".*"+strss+".*"}} || {"description" : { $regex : ".*"+strss+".*"}})
 		.exec(renderEvents)
 
 	function renderEvents(err, events) {
