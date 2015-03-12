@@ -8,6 +8,10 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var http = require('http');
 var path = require('path');
+var fs = require('fs');
+var imgur = require('imgur');
+var mmmagic = require('mmmagic'); 
+
 var handlebars = require('express3-handlebars');
 var flash = require('connect-flash');
 var passport = require('passport');
@@ -244,6 +248,8 @@ function isLoggedIn(req, res, next) {
 //load page after creating new event
 //app.get('/post/new', post.addEvent);
 app.get('/post/new', isLoggedIn, function(req, res) {
+	var magic = new mmmagic.Magic(mmmagic.MAGIC_MIME_TYPE);
+
 	var name = req.query.name;
 	var title = req.query.title;
 	var date = req.query.date;
@@ -253,9 +259,34 @@ app.get('/post/new', isLoggedIn, function(req, res) {
 	var location = req.query.location;
 	var selectors = req.query.selectors;
 	//var image = req.query.image;
+	var image =req.query.fileUploaded; //'./public/images/Plane.png';
+	console.log("HERE");
 	
-	
- 
+	/*var decodedImage;
+	var dataImage = "123";
+	/*fs.readFile(image, function(err, original_data){
+    	fs.writeFile('image_orig.jpg', original_data, function(err) {});
+    	var base64Image = original_data.toString('base64');
+    	decodedImage = new Buffer(base64Image, 'base64');
+    	fs.writeFile('image_decoded.jpg', decodedImage, function(err) {});
+	});*/
+	/*imgur.uploadFile(image)
+    .then(function (json) {
+        console.log(json.data.link);
+        description = json.data.link;
+    })
+    .catch(function (err) {
+        console.error(err.message);
+    });
+
+	var typeContent = magic.detectFile(image, function(err, result) {  
+  		if (err) throw err;
+
+  		// image/jpeg
+  		console.log('result'+ result);
+  		return result;
+	});
+	console.log("contentType"+ typeContent);*/
 
 	var newEvent = new models.event({
 		"userWhoCreatedEvent": globalUsername,
@@ -267,9 +298,13 @@ app.get('/post/new', isLoggedIn, function(req, res) {
 		"tags": selectors,
 		"location": location,
 		"description": description,
-		//"imageURL": image
+		"imageURL": image/*{
+			/*"data": dataImage,
+			"contentType": 'image/png',
+		}*/
+		
 	});
-
+	console.log("newEvent" + newEvent);
 	//view the newly created event form
 	newEvent.save(afterSaving);
 	function afterSaving(err, events){
@@ -277,6 +312,7 @@ app.get('/post/new', isLoggedIn, function(req, res) {
 		res.send(500);
 		res.redirect('myPosts')
 	}
+
 });
 
 //load page after removing an event from myPosts

@@ -31,23 +31,21 @@
 		<nav class="navbar navbar-fixed-top">
 		    <div class="navigation">
 		      <center><h1>Flyer</h1>
-		     <!-- <img style="width:40px; height:60px"class="mainImage" src="images/flyerlogo3.png"></center>-->
-
-
 		        <table style="width:99%">
 		        <tr>
 		          <td align="center"><a class="navLink" href="/myLife"><i class="fa fa-cloud"></i> My Life</a></td>
 		          <td align="center"><a class="navLink clickedTake" href="/takeAwalk"><i class="fa fa-cloud"></i> Take A Walk</a></td>    
-		          <td class="on" align="center"><a class="on navLink" href="/myPosts"><i class="fa fa-paper-plane"></i> Post</a></td>
+		          <td class="on" align="center"><a class="on navLink" href="/myPosts" style="color:white"><i class="fa fa-paper-plane"></i> Post</a></td>
 		        </tr>
 		      </table>
 		    </div>
-
 		</nav>
+		
 		<div class="login-card" style="padding:5px; margin:0px auto 10px">
-  			<form action ="/post" method ="">
+  			<!---<form action ="/post" method ="">
 				<input type="submit" class="login login-submit" value="Create a Flyer">
-		 	</form>	
+		 	</form>-->
+		 	 <center><a href="/post"><font color="#0071A9"><i class="fa fa-plus-square"></i> Create an Event</font></a><center>	
    		</div>
 
 		{{#each events}}	
@@ -73,7 +71,7 @@
 		</div>
 		{{/each}}
 	</div>
-	<center><a href="/post"><font color="FFFFF">Create an Event!</font></a><center>
-	<center><a href="/logout"><font color="FFFFF">Log Out</font></a><center>
+	<!--<center><a href="/post"><font color="FFFFF">Create an Event!</font></a><center>
+	<center><a href="/logout"><font color="FFFFF">Log Out</font></a><center>-->
 </body>
 </html>

@@ -12,9 +12,9 @@ var eventSchema = new mongoose.Schema({
 	"categories": String,
 	"location": String,
 	"description": String,
-	//"imageURL": String,
+	"imageURL":  String,//{ data: Buffer, contentType: String },
 	"tags": String,
-	"participants": Array
+	"participants": Array,
 });
 
 var userSchema = new mongoose.Schema({

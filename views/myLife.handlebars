@@ -31,12 +31,9 @@
     <nav class="navbar navbar-fixed-top">
     <div class="navigation">
       <center><h1>Flyer</h1>
-     <!-- <img style="width:40px; height:60px"class="mainImage" src="images/flyerlogo3.png"></center>-->
-
-
         <table style="width:99%">
         <tr>
-          <td class="on" align="center"><a class="on navLink" href="/myLife"><i class="fa fa-paper-plane"></i> My Life</a></td>
+          <td class="on" align="center"><a style="color:white" class="on navLink" href="/myLife"><i class="fa fa-paper-plane"></i> My Life</a></td>
           <td align="center"><a class="navLink clickedTake" href="/takeAwalk"><i class="fa fa-cloud"></i> Take A Walk</a></td>    
           <td align="center"><a class="navLink" href="/myPosts"><i class="fa fa-cloud"></i> Post</a></td>
         </tr>
@@ -44,7 +41,9 @@
     </div>
     </nav>
   
-  
+    <div class="login-card" style="padding:5px; margin:0px auto 10px">
+         <center><a href="/logout"><font color="#0071A9"><i class="fa fa-sign-out"></i> Log Out</font></a><center>
+    </div>
 
     {{#each events}}    
     <div class="event" id="event{{id}}">
@@ -67,11 +66,8 @@
     {{/each}}
   </div>  
   
-<!--<div class="login-card" style="padding:5px; margin:0px auto 10px">
-              <form action ="/logout" method ="">
-                <input type="submit" name="login"  class="login login-submit remove-submit" value="Unboard (Logout)">
-              </div>
-      </div>-->
-  <center><a href="/logout"><font color="FFFFF">Log Out</font></a><center>
+
+  <!--<center><a href="/logout"><font color="FFFFF">Log Out</font></a><center>-->
+      
 </body>
 </html>

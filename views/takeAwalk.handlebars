@@ -33,11 +33,10 @@
 		<nav class="navbar navbar-fixed-top">
 		    <div class="navigation">
 		      <center><h1>Flyer</h1>
-				<i class="fa fa-camera-retro fa-lg"></i>
 		        <table style="width:99%">
 		        <tr>
 		          <td align="center"><a class="navLink" href="/myLife"><i class="fa fa-cloud"></i> My Life</a></td>
-		          <td class="on" align="center"><a class="on navLink clickedTake" href="/takeAwalk"><i class="fa fa-paper-plane"></i> Take A Walk</a></td>    
+		          <td class="on" align="center"><a class="on navLink clickedTake" href="/takeAwalk" style="color:white"><i class="fa fa-paper-plane"></i> Take A Walk</a></td>    
 		          <td  align="center"><a class="navLink" href="/myPosts"><i class="fa fa-cloud"></i> Post</a></td>
 		        </tr>
 		      </table>
@@ -46,9 +45,9 @@
 
 		
 		<div class="login-card" style="padding:5px; margin:0px auto 10px">
-		      		<form action ="/takeAwalk" method ="POST">
-      					<input type="text" class="form-control" id="name" name = "selectInput" placeholder="Search by Org, Date, Time, Descr... ">
-     			 	</form>	
+      		<form action ="/takeAwalk" method ="POST">
+					<input type="text" class="form-control" id="name" name = "selectInput" placeholder="Search by Org, Date, Time, Descr... ">
+			</form>	
    		</div>
 		{{#each events}}
 		<div class="event" id="event{{id}}">			
@@ -63,7 +62,6 @@
 		        <p><i class="fa fa-tags"></i> {{tags}}</p>
 		        <p><i class="fa fa-location-arrow"></i> {{location}}</p>
 		        <p><i class="fa fa-info-circle"></i> {{description}}</p>
-		        <!--<p><a href="#" class="addEvent btn btn-primary" id="addToMyLife" role="button">Add Event</a></p>-->
 		        <input type="submit" class="addToMyLife addToMyLife-submit login login-submit" id="addToMyLife" role="button" value="Add to My Life!">
 		      </div>
 		    </div>
