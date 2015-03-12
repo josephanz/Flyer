@@ -218,7 +218,7 @@ app.get('/logout', function(req, res) {
 
 //load all user's posted events
 app.get('/myPosts', isLoggedIn, function(req, res) {
-	console.log('VIEWING POSTS');
+	//console.log('VIEWING POSTS');
 	models.event
 		.find({"userWhoCreatedEvent": req.user.username})
 		.sort('date')
@@ -236,7 +236,7 @@ app.get('/post', isLoggedIn, function(req, res) {
 });
 
 function isLoggedIn(req, res, next) {
-    console.log(req.session)
+    //console.log(req.session)
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next()
@@ -260,7 +260,7 @@ app.get('/post/new', isLoggedIn, function(req, res) {
 	var selectors = req.query.selectors;
 	//var image = req.query.image;
 	var image =req.query.fileUploaded; //'./public/images/Plane.png';
-	console.log("HERE");
+	//console.log("HERE");
 	
 	/*var decodedImage;
 	var dataImage = "123";
@@ -304,7 +304,7 @@ app.get('/post/new', isLoggedIn, function(req, res) {
 		}*/
 		
 	});
-	console.log("newEvent" + newEvent);
+	//console.log("newEvent" + newEvent);
 	//view the newly created event form
 	newEvent.save(afterSaving);
 	function afterSaving(err, events){
@@ -318,8 +318,8 @@ app.get('/post/new', isLoggedIn, function(req, res) {
 //load page after removing an event from myPosts
 app.post('/myPosts/:eventID/delete', isLoggedIn, function(req, res) {
 	var eventID = req.params.eventID;
-	console.log(req.params.eventID);
-	console.log('REMOVING EVENT')
+	//console.log(req.params.eventID);
+	//console.log('REMOVING EVENT')
 	models.event
 		.find({"_id": eventID})
 		.remove()
@@ -372,9 +372,194 @@ app.get('/takeAwalk',isLoggedIn,function(req, res) {
 	}
 });
 
+/*app.get('/takeAwalkFree', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Free.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkFree', {'events': events});
+	}
+});
+
+app.get('/takeAwalkFood', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Food.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkFood', {'events': events});
+	}
+});
+
+app.get('/takeAwalkCareer', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Career.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkCareer', {'events': events});
+	}
+});
+
+app.get('/takeAwalkMusic', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Music.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkMusic', {'events': events});
+	}
+});
+
+app.get('/takeAwalkPhilanthropy', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Philanthropy.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkPhilanthropy', {'events': events});
+	}
+});
+
+app.get('/takeAwalkSport', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Sport.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkSport', {'events': events});
+	}
+});
+
+app.get('/takeAwalkoffCampus', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Off-Campus.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkoffCampus', {'events': events});
+	}
+});
+
+app.get('/takeAwalkonCampus', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*On-Campus.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkonCampus', {'events': events});
+	}
+});
+
+app.get('/takeAwalkpriceCenter', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Price.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkpriceCenter', {'events': events});
+	}
+});
+
+app.get('/takeAwalkrimac', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Rimac.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkrimac', {'events': events});
+	}
+});
+
+app.get('/takeAwalkConference', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Conference.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkConference', {'events': events});
+	}
+});
+
+app.get('/takeAwalkGBM', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Gbm.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkGBM', {'events': events});
+	}
+});
+
+app.get('/takeAwalkOther', isLoggedIn, function(req, res) {
+	console.log("SHOULD SHOW ALL EVENTS");
+	models.event
+		.find({"tags" : { $regex : ".*Other.*"}})
+		.sort('date')
+		.exec(renderEvents);
+
+	function renderEvents(err, events) {
+		console.log(events);
+		res.render('takeAwalkOther', {'events': events});
+	}
+});*/
+
+app.get('/takeAwalkFilter', isLoggedIn, function(req, res) {
+	console.log(req.params);
+	models.event
+		.find({"hostname": req.query.filterValue} || {"hostname" : req.query.filterValue}
+			|| {"date" : req.query.filterValue } || {"starttime" : req.query.filterValue}
+			|| {"endtime" : req.query.filterValue} || {"tags" : req.query.filterValue}
+			|| {"location" : req.query.filterValue} || {"description" : req.query.filterValue})
+		.exec(renderEvents)
+
+	function renderEvents(err, events) {
+		console.log("HELLO");
+		console.log(events);
+		res.render('takeAwalkFilter', {'events': events});
+	}
+});
+
 app.post('/takeAwalk/:eventID', isLoggedIn, function(req, res) {
 	var eventID = req.params.eventID;
-	console.log(req.params.eventID);
+	//console.log(req.params.eventID);
 	models.event
 		//.find({"_id": eventID})
 		.update(

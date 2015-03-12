@@ -79,7 +79,214 @@ function initializePage() {
 		});
 	});
 
+	$('#filterSubmitButton').click(function(e) {
+		e.preventDefault();
+
+		var filterValue = $('#filterEvent #filterValue').val();
+		var filter = {
+			'filterValue': filterValue
+		};
+
+	    window.location.href = '/takeAwalkFilter?filterValue=' + filterValue;
 	
+	});
+
+	/*$('#freeFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkFree', function() {
+			window.location.href = '/takeAwalkFree';
+		});
+		//});
+	});
+
+	$('#foodFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkFood', function() {
+			window.location.href = '/takeAwalkFood';
+		});
+		//});
+	});
+
+	$('#careerFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkCareer', function() {
+			window.location.href = '/takeAwalkCareer';
+		});
+		//});
+	});
+
+	$('#educationFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkEducation', function() {
+			window.location.href = '/takeAwalkEducation';
+		});
+		//});
+	});
+
+	$('#musicFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkMusic', function() {
+			window.location.href = '/takeAwalkMusic';
+		});
+		//});
+	});
+
+	$('#philanthropyFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkPhilanthropy', function() {
+			window.location.href = '/takeAwalkPhilanthropy';
+		});
+		//});
+	});
+
+	$('#sportFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkSport', function() {
+			window.location.href = '/takeAwalkSport';
+		});
+		//});
+	});
+
+	$('#offCampusFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkoffCampus', function() {
+			window.location.href = '/takeAwalkoffCampus';
+		});
+		//});
+	});
+
+	$('#onCampusFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkonCampus', function() {
+			window.location.href = '/takeAwalkonCampus';
+		});
+		//});
+	});
+
+	$('#priceCenterFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkpriceCenter', function() {
+			window.location.href = '/takeAwalkpriceCenter';
+		});
+		//});
+	});
+
+	$('#rimacFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkrimac', function() {
+			window.location.href = '/takeAwalkrimac';
+		});
+		//});
+	});
+
+	$('#conferenceFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkConference', function() {
+			window.location.href = '/takeAwalkConference';
+		});
+		//});
+	});
+
+	$('#gbmFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkGBM', function() {
+			window.location.href = '/takeAwalkGBM';
+		});
+		//});
+	});
+	
+	$('#otherFilter').click(function(e) {
+	//$('.post a').click(function(e) {
+		e.preventDefault();
+		
+
+		//var details_div = $('#event' + idNumber);
+		//alert(details_div);
+		//details_div.find('#addToMyLife').click(function(e) {
+		$.get('/takeAwalkOther', function() {
+			window.location.href = '/takeAwalkOther';
+		});
+		//});
+	});*/
+
 	$('.clickedTake').click(function(){
 		
 		var random_num = Math.random();

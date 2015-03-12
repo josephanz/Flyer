@@ -42,13 +42,49 @@
 		      </table>
 		    </div>
 		</nav>
-
-		
+		<!--<div class="container">
+      		<form class="form-inline" role="form">
+      			<div class="form-group">
+      				<center><h4 style="color:white">Select a category to filter by:</h4></center>
+      			</div>
+      			<table>
+      			<tr>
+					<td><input type="submit" class="form-control" id="freeFilter" value="Free"></td>
+					<td><input type="submit" class="form-control" id="foodFilter" value="Food"></td>
+					<td><input type="submit" class="form-control" id="careerFilter" value="Job"></td>
+					<td><input type="submit" class="form-control" id="educationFilter" value="Education" role="button"></td>
+				</tr>
+				</table>
+				<table>
+				<tr>
+					<td><input type="submit" class="form-control" id="musicFilter" value="Music" role="button"></td>
+					<td><input type="submit" class="form-control" id="philanthropyFilter" value="Philanthropy" role="button"></td>
+					<td><input type="submit" class="form-control" id="sportFilter" value="Sports" role="button"></td>
+				</tr>
+				</table>
+				<table>
+				<tr>
+					<td><input type="submit" class="form-control" id="gbmFilter" value="GBMs" role="button"></td>
+					<td><input type="submit" class="form-control" id="onCampusFilter" value="On-Campus" role="button"></td>
+					<td><input type="submit" class="form-control" id="priceCenterFilter" value="Price Center" role="button"></td>
+					
+				</tr>
+				</table>
+				<table>
+				<tr>
+					<td><input type="submit" class="form-control" id="rimacFilter" value="RIMAC" role="button"></td>
+					<td><input type="submit" class="form-control" id="conferenceFilter" value="Conference" role="button"></td>
+					<td><input type="submit" class="form-control" id="offCampusFilter" value="Off-Campus" role="button"></td>
+				</tr>
+				</table>
+				<center><input type="submit" class="form-control" id="otherFilter" value="Other" role="button"></center>
+			</form>
+			<br>-->
 		<div class="login-card" style="padding:5px; margin:0px auto 10px">
-      		<form action ="/takeAwalk" method ="POST">
-					<input type="text" class="form-control" id="name" name = "selectInput" placeholder="Search by Org, Date, Time, Descr... ">
-			</form>	
-   		</div>
+		    <form action ="/takeAwalkFilter" method ="get">
+      			<input type="text" class="form-control" id="name" name = "selectInput" placeholder="Search by Org, Date, Time, Descr... ">
+     		</form>	
+		 </div>
 		{{#each events}}
 		<div class="event" id="event{{id}}">			
 		  <div class="col-sm-6 col-md-4">
