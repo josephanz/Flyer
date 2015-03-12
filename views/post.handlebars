@@ -42,52 +42,51 @@
 			<form action="/post/new" method="get" role="form" id="addEvent">
 			<h3>Fill out all Fields for your Flyer:</h3>
     		<label for="name">Name of Organization:</label>
-	    	<input type="text" class="form-control" name="name" id="name" placeholder="Enter Name:">
+	    	<input type="text" class="form-control" name="name" id="name" required='true' placeholder="Enter Name:">
 	    	<label for="title">Title of Event:</label>
-	    	<input type="text" name="title" class="form-control" id="title" placeholder="Type title:">
+	    	<input type="text" name="title" class="form-control" id="title" required='true' placeholder="Type title:">
 	    	<label for="date">Date of Event:</label>
-	    	<input type="date" name="date" class="form-control" id="date" placeholder="MMM/DD/YYYY">
+	    	<input type="date" name="date" class="form-control" id="date" required='true' placeholder="MMM/DD/YYYY">
 	    	</br>
 	    	<label for="time">Starting Time:</label>
-	    	<input type="time" name ="starttime" class="form-control" id="starttime" placeholder="HH:MM">
+	    	<input type="time" name ="starttime" class="form-control" id="starttime" required='true' placeholder="HH:MM">
 	    	</br>
 	    	<label for="time">Ending Time:</label>
 	    	<input type="time" name="endtime" class="form-control" id="endtime" placeholder="HH:MM">
 	    	<br>
 	    	 <div class="form-group">
 				  	<label for="time">Select Category(ies)</label>
-		      		<select name="selectors" class="selectpicker" style="width:100%" multiple>
-					    <optgroup label="Free">
-					      <option>Food</option>
-					      <option>Free</option>
+		      		<select name="selectors" class="selectpicker" required='true' style="width:100%" multiple>
+					    <optgroup label="Type">
+					      <option>Career</option>
+					      <option>Education</option>
+					      <option>Music</option>
+					      <option>Philanthropy</option>
+					      <option>Sport</option>
 					    </optgroup>
-					    <optgroup label="Charity">
-					    	<option>Raise Money</option>
-					    	<option>Donate</option>
-					    	<option>Charity</option>
-					    </optgroup>	
 					    <optgroup label="Location">
 					      <option>Off-Campus</option>
+					      <option>On-Campus</option>
 					      <option>Price Center</option>
-					      <option>RIMAC</option>
-					      <option>One of the 6 Colleges</option>
+					      <option>Rimac</option>
 					    </optgroup>
-					     <optgroup label="Type">
-					      <option>Sport</option>
-					      <option>Dance</option>
-					      <option>Preformance</option>
-					      <option>Party</option>
+					     <optgroup label="Other">
+					      <option>Free</option>
+					      <option>Free Food</option>
+					      <option>Conference</option>
+					      <option>GBMs</option>
+					      <option>Other</option>
 					    </optgroup>
 					  </select>
 		      	</div>
 		    <label for="location">Location</label>
-	    	<input type="text" name="location" class="form-control" id="location" placeholder="123 Library Walk, UCSD">  	
+	    	<input type="text" name="location" required='true' class="form-control" id="location" placeholder="123 Library Walk, UCSD">  	
 		    <label for="description">Description of Event:</label>  	
-		    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+		    <textarea class="form-control" name="description" id="description" required='true' rows="3"></textarea>
 		    </br>
 		    <div class="form-group">
     				<label for="exampleInputFile">URL of Flyer</label>
-    				<input type="text" name="fileUploaded" id="exampleInputFile" placeholder="www.flyer-dev.herokuapp.com/flyer.png">
+    				<input type="text" required='true' name="fileUploaded" id="exampleInputFile" placeholder="www.flyer-dev.herokuapp.com/flyer.png">
     				<p class="help-block">Image will scale</p>
  				</div>
 	    	<input type="submit" id="newEventSubmitButton" class="login login-submit" value="Create the Event">
